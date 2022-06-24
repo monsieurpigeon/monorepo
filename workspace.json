@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "jeuxvoisins-client": "apps/jeuxvoisins-client",
+    "jeuxvoisins-client-e2e": "apps/jeuxvoisins-client-e2e"
+  }
+}
