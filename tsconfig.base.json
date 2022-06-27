@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@monorepo/data-access": ["libs/data-access/src/index.ts"],
+      "@monorepo/design-system": ["libs/design-system/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

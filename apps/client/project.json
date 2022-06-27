@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/jeuxvoisins-client",
+  "sourceRoot": "apps/client",
   "projectType": "application",
   "targets": {
     "build": {
@@ -8,8 +8,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/jeuxvoisins-client",
-        "outputPath": "dist/apps/jeuxvoisins-client"
+        "root": "apps/client",
+        "outputPath": "dist/apps/client"
       },
       "configurations": {
         "development": {},
@@ -20,16 +20,16 @@
       "executor": "@nrwl/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "jeuxvoisins-client:build",
+        "buildTarget": "client:build",
         "dev": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "jeuxvoisins-client:build:development",
+          "buildTarget": "client:build:development",
           "dev": true
         },
         "production": {
-          "buildTarget": "jeuxvoisins-client:build:production",
+          "buildTarget": "client:build:production",
           "dev": false
         }
       }
@@ -37,14 +37,14 @@
     "export": {
       "executor": "@nrwl/next:export",
       "options": {
-        "buildTarget": "jeuxvoisins-client:build:production"
+        "buildTarget": "client:build:production"
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/jeuxvoisins-client"],
+      "outputs": ["coverage/apps/client"],
       "options": {
-        "jestConfig": "apps/jeuxvoisins-client/jest.config.ts",
+        "jestConfig": "apps/client/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -52,7 +52,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/jeuxvoisins-client/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

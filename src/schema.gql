@@ -1,0 +1,28 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  name: String!
+}
+
+type Query {
+  user: [User!]!
+  userone(id: Int!): User!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
+}
+
+input CreateUserInput {
+  name: String!
+}
+
+input UpdateUserInput {
+  name: String
+  id: Int!
+}
