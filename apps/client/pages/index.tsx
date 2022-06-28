@@ -8,15 +8,9 @@ const StyledPage = styled.div`
 
 export function Index() {
   const { data } = useGetUsersQuery();
-  console.log(data);
 
   return (
-    <div>
-      {data &&
-        data.user.map((u) => {
-          return <div key={u.id}>{u.name}</div>;
-        })}
-    </div>
+    <div>{data && data.user.map((u) => <div key={u.id}>{u.name}</div>)}</div>
   );
 }
 
