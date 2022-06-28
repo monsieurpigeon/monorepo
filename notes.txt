@@ -1,0 +1,11 @@
+ARCHITECTURE
+NX [
+  frontend : Next
+  | GraphQL
+  backend : Nest
+  | TypeORM
+  database : PostgreSQL
+]
+
+MEDIAS
+https://github.com/nrwl/nx-apollo-react-example
