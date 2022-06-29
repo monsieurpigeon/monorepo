@@ -8,12 +8,18 @@ import { AppService } from './app.service';
 import { join } from 'path';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { MessageModule } from './message/message.module';
+import { Message } from './message/entities/message.entity';
 
+// TODO : auto generate schema file in good folder
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      subscriptions: {
+        'graphql-ws': true,
+      },
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -22,10 +28,11 @@ import { User } from './user/entities/user.entity';
       username: 'postgres',
       password: 'root',
       database: 'jeuxvoisins',
-      entities: [User],
+      entities: [User, Message],
       synchronize: true,
     }),
     UserModule,
+    MessageModule,
   ],
   controllers: [AppController],
   providers: [AppService],

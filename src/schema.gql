@@ -7,15 +7,25 @@ type User {
   name: String!
 }
 
+type Message {
+  id: Int!
+  text: String!
+}
+
 type Query {
   user: [User!]!
   userone(id: Int!): User!
+  message: [Message!]!
+  messageone(id: Int!): Message!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  createMessage(createMessageInput: CreateMessageInput!): Message!
+  updateMessage(updateMessageInput: UpdateMessageInput!): Message!
+  removeMessage(id: Int!): Message!
 }
 
 input CreateUserInput {
@@ -25,4 +35,17 @@ input CreateUserInput {
 input UpdateUserInput {
   name: String
   id: Int!
+}
+
+input CreateMessageInput {
+  text: String!
+}
+
+input UpdateMessageInput {
+  text: String
+  id: Int!
+}
+
+type Subscription {
+  messageAdded: Message!
 }

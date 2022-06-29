@@ -1,0 +1,20 @@
+query getMessages {
+  message {
+    id
+    text
+  }
+}
+
+mutation createMessage($text: String!) {
+  createMessage(createMessageInput: { text: $text }) {
+    id
+    text
+  }
+}
+
+subscription onMessageAdded {
+  messageAdded {
+    id
+    text
+  }
+}

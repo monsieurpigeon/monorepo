@@ -1,8 +1,26 @@
 type Query {
   user: [User]
+  message: [Message]
+}
+
+input CreateMessageInput {
+  text: String!
+}
+
+type Mutation {
+  createMessage(createMessageInput: CreateMessageInput): Message
+}
+
+type Subscription {
+  messageAdded: Message!
 }
 
 type User {
   id: Int!
   name: String
+}
+
+type Message {
+  id: Int!
+  text: String
 }
