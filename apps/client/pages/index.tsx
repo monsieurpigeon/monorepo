@@ -50,7 +50,9 @@ function Messages() {
   const [messages, setMessages] = useState<any>([]);
 
   useEffect(() => {
-    setMessages(data.message);
+    if (data) {
+      setMessages(data.message);
+    }
   }, [data]);
 
   const [text, setText] = useState('');
