@@ -1,11 +1,12 @@
-import styled, { createGlobalStyle } from 'styled-components';
 import {
+  Message,
   useCreateMessageMutation,
   useGetMessagesQuery,
   useGetUsersQuery,
   useOnMessageAddedSubscription,
 } from '@monorepo/data-access';
 import { useEffect, useState } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -47,12 +48,10 @@ function Messages() {
   const { data } = useGetMessagesQuery();
   const { data: sub } = useOnMessageAddedSubscription();
   const [send] = useCreateMessageMutation();
-  const [messages, setMessages] = useState<any>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    if (data) {
-      setMessages(data.message);
-    }
+    setMessages(data?.messages);
   }, [data]);
 
   const [text, setText] = useState('');
@@ -67,11 +66,11 @@ function Messages() {
     <>
       <MessagesContainer>
         {messages &&
-          messages.map((m) => {
+          messages.map((message) => {
             return (
               <MessageContainer
-                key={m.id}
-              >{`${m.id} - ${m.text}`}</MessageContainer>
+                key={message.id}
+              >{`${message.id} - ${message.text}`}</MessageContainer>
             );
           })}
         <MessageContainer>{text}</MessageContainer>
@@ -101,7 +100,9 @@ export function Index() {
     <div>
       <GlobalStyle />
       <Messages />
-      {data && data.user.map((u) => <div key={u.id}>{u.name}</div>)}
+      {data?.users.map((user) => (
+        <div key={user.id}>{user.name}</div>
+      ))}
     </div>
   );
 }

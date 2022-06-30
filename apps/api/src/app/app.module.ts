@@ -1,22 +1,20 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
+import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { join } from 'path';
-import { UserModule } from './user/user.module';
-import { User } from './user/entities/user.entity';
-import { MessageModule } from './message/message.module';
 import { Message } from './message/entities/message.entity';
+import { MessageModule } from './message/message.module';
+import { User } from './user/entities/user.entity';
+import { UserModule } from './user/user.module';
 
-// TODO : auto generate schema file in good folder
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'apps/api/src/schema.gql'),
       subscriptions: {
         'graphql-ws': true,
       },

@@ -1,12 +1,12 @@
-import { AppProps } from 'next/app';
 import {
-  split,
-  HttpLink,
   ApolloClient,
-  InMemoryCache,
   ApolloProvider,
+  HttpLink,
+  InMemoryCache,
+  split,
 } from '@apollo/client';
 import { getMainDefinition } from '@apollo/client/utilities';
+import { AppProps } from 'next/app';
 
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';

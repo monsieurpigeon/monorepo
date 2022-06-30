@@ -19,26 +19,72 @@ export type CreateMessageInput = {
   text: Scalars['String'];
 };
 
+export type CreateUserInput = {
+  name: Scalars['String'];
+};
+
 export type Message = {
   __typename?: 'Message';
   id: Scalars['Int'];
-  text?: Maybe<Scalars['String']>;
+  text: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createMessage?: Maybe<Message>;
+  createMessage: Message;
+  createUser: User;
+  removeMessage: Message;
+  removeUser: User;
+  updateMessage: Message;
+  updateUser: User;
 };
 
 
 export type MutationCreateMessageArgs = {
-  createMessageInput?: InputMaybe<CreateMessageInput>;
+  createMessageInput: CreateMessageInput;
+};
+
+
+export type MutationCreateUserArgs = {
+  createUserInput: CreateUserInput;
+};
+
+
+export type MutationRemoveMessageArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationRemoveUserArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationUpdateMessageArgs = {
+  updateMessageInput: UpdateMessageInput;
+};
+
+
+export type MutationUpdateUserArgs = {
+  updateUserInput: UpdateUserInput;
 };
 
 export type Query = {
   __typename?: 'Query';
-  message?: Maybe<Array<Maybe<Message>>>;
-  user?: Maybe<Array<Maybe<User>>>;
+  message: Message;
+  messages: Array<Message>;
+  user: User;
+  users: Array<User>;
+};
+
+
+export type QueryMessageArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryUserArgs = {
+  id: Scalars['Int'];
 };
 
 export type Subscription = {
@@ -46,38 +92,48 @@ export type Subscription = {
   messageAdded: Message;
 };
 
+export type UpdateMessageInput = {
+  id: Scalars['Int'];
+  text?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateUserInput = {
+  id: Scalars['Int'];
+  name?: InputMaybe<Scalars['String']>;
+};
+
 export type User = {
   __typename?: 'User';
   id: Scalars['Int'];
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type GetMessagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMessagesQuery = { __typename?: 'Query', message?: Array<{ __typename?: 'Message', id: number, text?: string | null } | null> | null };
+export type GetMessagesQuery = { __typename?: 'Query', messages: Array<{ __typename?: 'Message', id: number, text: string }> };
 
 export type CreateMessageMutationVariables = Exact<{
   text: Scalars['String'];
 }>;
 
 
-export type CreateMessageMutation = { __typename?: 'Mutation', createMessage?: { __typename?: 'Message', id: number, text?: string | null } | null };
+export type CreateMessageMutation = { __typename?: 'Mutation', createMessage: { __typename?: 'Message', id: number, text: string } };
 
 export type OnMessageAddedSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
-export type OnMessageAddedSubscription = { __typename?: 'Subscription', messageAdded: { __typename?: 'Message', id: number, text?: string | null } };
+export type OnMessageAddedSubscription = { __typename?: 'Subscription', messageAdded: { __typename?: 'Message', id: number, text: string } };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', user?: Array<{ __typename?: 'User', id: number, name?: string | null } | null> | null };
+export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: number, name: string }> };
 
 
 export const GetMessagesDocument = gql`
     query getMessages {
-  message {
+  messages {
     id
     text
   }
@@ -176,7 +232,7 @@ export type OnMessageAddedSubscriptionHookResult = ReturnType<typeof useOnMessag
 export type OnMessageAddedSubscriptionResult = Apollo.SubscriptionResult<OnMessageAddedSubscription>;
 export const GetUsersDocument = gql`
     query getUsers {
-  user {
+  users {
     id
     name
   }

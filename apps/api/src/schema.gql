@@ -2,21 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  id: Int!
-  name: String!
-}
-
 type Message {
   id: Int!
   text: String!
 }
 
+type User {
+  id: Int!
+  name: String!
+}
+
 type Query {
-  user: [User!]!
-  userone(id: Int!): User!
-  message: [Message!]!
-  messageone(id: Int!): Message!
+  users: [User!]!
+  user(id: Int!): User!
+  messages: [Message!]!
+  message(id: Int!): Message!
 }
 
 type Mutation {
